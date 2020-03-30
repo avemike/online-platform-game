@@ -3,13 +3,14 @@ export class _Room {
     this.data = { objectsReferences: [], x: 0 }
   }
   addObjectReference(ObjectReference) {
-    this.data.objectsReferences.push(ObjectReference)
+    if (ObjectReference) this.data.objectsReferences.push(ObjectReference)
   }
   run(ctx) {
-    this.data.x += 1
-    ctx.fillStyle = "#333333";
-    // ctx.fillRect(0, 0, size.width, size.height);
+    this.data.objectsReferences.map(obj => {
+      // console.log(obj.run())
+      const {ImageReference, width, height, x, y} = obj.run(ctx)
 
-    ctx.fillRect(this.data.x, 25, 100, 100)
+      ctx.drawImage(ImageReference, x, y, width, height)
+    })
   }
 }
