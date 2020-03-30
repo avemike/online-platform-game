@@ -5,7 +5,9 @@ export class _Object {
       SpriteReference,
       x: args.x || 0,
       y: args.y || 0,
-      spriteProperties : SpriteReference.getProperties()
+      spriteProperties : SpriteReference.getProperties(),
+
+      listeners: []
     }
   }
   run() {
@@ -16,5 +18,11 @@ export class _Object {
       x: this.data.x - this.data.spriteProperties.width / 2,
       y: this.data.y - this.data.spriteProperties.height / 2
     }
+  }
+  addListener(type, inputFunc) {
+    const func = inputFunc.bind(this)
+
+    document.addEventListener(type, func)
+    this.data.listeners.push({ type, func })
   }
 }
