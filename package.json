@@ -1,0 +1,23 @@
+{
+  "dependencies": {},
+  "name": "stick-wars",
+  "version": "1.0.0",
+  "description": "Game",
+  "main": "index.html",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack && http-server ./dist -c-1",
+    "webpack": "webpack"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "babel-loader": "^8.1.0",
+    "eslint": "^6.8.0",
+    "http-server": "^0.12.1",
+    "path": "^0.12.7",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
