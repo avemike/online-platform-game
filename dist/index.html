@@ -5,8 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>StickWars</title>
+  <style>
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+    * {box-sizing: border-box;}
+    #canvas {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+    }
+    .resources {
+      display: none;
+    }
+  </style>
 </head>
 <body>
+  <div class="resources">
+    <img src="../public/Pixel-Guy.svg" alt="">
+  </div>
+  <canvas id="canvas"></canvas>
   <script src="./main.bundle.js"></script>
 </body>
 </html>
