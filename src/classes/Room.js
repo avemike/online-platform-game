@@ -6,10 +6,12 @@ export class _Room {
     if (ObjectReference) this.data.objectsReferences.push(ObjectReference)
   }
   run(ctx) {
-    this.data.objectsReferences.map(obj => {
-      // console.log(obj.run())
-      const {ImageReference, width, height, x, y} = obj.run(ctx)
+    // cleaning up
+    ctx.fillRect(0, 0, 1000, 400)
 
+    // rendering every object's sprite
+    this.data.objectsReferences.map(obj => {
+      const {ImageReference, width, height, x, y} = obj.run(ctx)
       ctx.drawImage(ImageReference, x, y, width, height)
     })
   }

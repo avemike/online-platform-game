@@ -2,6 +2,7 @@ import { _Object } from './classes/Object'
 import { _Room } from './classes/Room'
 import { _Window } from './classes/Window'
 import { _Sprite } from './classes/Sprite'
+import { _Player } from './resources/Player'
 
 import DotSrc from './classes/dot_40x40.png'
 const DotImage = new Image(40, 40)
@@ -11,23 +12,7 @@ const SprPlayer = new _Sprite(DotImage, {width: 40, height: 40})
 const MainWindow = new _Window(document.querySelector('#canvas'))
 const MainRoom = new _Room()
 
-const Player = new _Object( SprPlayer, {})
-Player.addListener('keypress', function(e) {
-  switch(e.code) {
-    case 'KeyA':
-      this.data.x -= 5
-      break;
-    case 'KeyW':
-      this.data.y -= 5
-      break;
-    case 'KeyD':
-      this.data.x += 5
-      break;
-    case 'KeyS':
-      this.data.y += 5
-      break;
-  }
-})
+const Player = new _Player( SprPlayer, {x: 20, y: 380})
 
 MainWindow.selectRoom(MainRoom)
 MainRoom.addObjectReference(Player)

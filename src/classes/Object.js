@@ -19,10 +19,4 @@ export class _Object {
       y: this.data.y - this.data.spriteProperties.height / 2
     }
   }
-  addListener(type, inputFunc) {
-    const func = inputFunc.bind(this)
-
-    document.addEventListener(type, func)
-    this.data.listeners.push({ type, func })
-  }
 }
