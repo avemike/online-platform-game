@@ -21,7 +21,6 @@ export class _Object {
     this.data.y += this.data.speedY
   }
   run() {
-    this.update()
     return {
       ImageReference: this.data.SpriteReference.getImageReference(),
       width: this.data.spriteProperties.width,
