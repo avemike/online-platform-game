@@ -1,8 +1,8 @@
 import {
   _Object
-} from '../classes/Object';
+} from '../../classes/Object';
 
-export class _Player extends _Object {
+export class ObjPlayer extends _Object {
   constructor(SpriteReference = null, args) {
     super(SpriteReference, args)
     this.data = {
