@@ -5,12 +5,23 @@ export class _Object {
       SpriteReference,
       x: args.x || 0,
       y: args.y || 0,
+      speedX: args.speedX || 0,
+      speedY: args.speedY || 0,
+      
+      speedXMax: args.speedXmax || 10,
+      speedYMax: args.speedYmax || 10,
+
       spriteProperties : SpriteReference.getProperties(),
 
       listeners: []
     }
   }
+  update() {
+    this.data.x += this.data.speedX
+    this.data.y += this.data.speedY
+  }
   run() {
+    this.update()
     return {
       ImageReference: this.data.SpriteReference.getImageReference(),
       width: this.data.spriteProperties.width,

@@ -3,7 +3,8 @@ export class _Window {
     this.data = {
       elementReference,
       ctx: canvas.getContext('2d', {alpha: false}), // set alpha channel on false
-      RoomReference: null
+      RoomReference: null,
+      render: true
     }
   }
   selectRoom(RoomReference) {
