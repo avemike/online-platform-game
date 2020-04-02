@@ -1,17 +1,23 @@
 // create handling for SpriteReference as null
 export class _Object {
-  constructor(SpriteReference = null, args) {
+  constructor(SpriteReference, args) {
+    const sprProperties = SpriteReference.getProperties()
     this.data = {
       SpriteReference,
       x: args.x || 0,
       y: args.y || 0,
+
+      width: args.width || sprProperties.width,
+      height: args.height || sprProperties.height,
+
       speedX: args.speedX || 0,
       speedY: args.speedY || 0,
       
       speedXMax: args.speedXmax || 10,
       speedYMax: args.speedYmax || 10,
-
-      spriteProperties : SpriteReference.getProperties(),
+      
+      spriteProperties : sprProperties,
+      
 
       listeners: []
     }

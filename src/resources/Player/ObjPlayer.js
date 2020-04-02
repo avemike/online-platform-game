@@ -1,6 +1,6 @@
 import {
   _Object
-} from '../../classes/Object';
+} from '../../classes/_Object';
 
 export class ObjPlayer extends _Object {
   constructor(SpriteReference = null, args) {
