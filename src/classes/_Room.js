@@ -6,6 +6,7 @@ export class _Room {
     if (ObjectReference) this.data.objectsReferences.push(ObjectReference)
   }
   update() {
+    
     this.data.objectsReferences.map(obj => {
       obj.update()
     })

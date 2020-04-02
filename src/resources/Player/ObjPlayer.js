@@ -5,16 +5,26 @@ import {
 export class ObjPlayer extends _Object {
   constructor(SpriteReference = null, args) {
     super(SpriteReference, args)
+
+    const [width, height, x, y] = [this.data]
+
     this.data = {
       ...this.data,
       keyState: [],
       moving: 
-        {
-          left: false,
-          up: false,
-          right: false,
-          down: false
-        }
+      {
+        left: false,
+        up: false,
+        right: false,
+        down: false
+      },
+      hitbox:
+      {
+        left: x - width/2,
+        right: x + width/2,
+        up: y - height/2,
+        down: y + height/2
+      }
     }
 
     // setting up listeners
