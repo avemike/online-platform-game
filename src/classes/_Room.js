@@ -1,22 +1,44 @@
 export class _Room {
   constructor() {
-    this.data = { objectsReferences: [], x: 0 }
+    this.data = {
+      renderableReferences: [],
+      collisionableReferences: [],
+      playerReference: [],
+      updatableReferences: []
+    }
   }
-  addObjectReference(ObjectReference) {
-    if (ObjectReference) this.data.objectsReferences.push(ObjectReference)
+  // adding objects to room
+  // args is array of possible object options
+  // ['collisionable', 'renderable', 'player', 'grounded']
+  addObjectReference(ObjectReference, args) {
+    // error handling
+    if (!ObjectReference) throw new Error('ObjectReference does not exist')
+    
+    if (args.includes('collisionable')) this.data.collisionableReferences.push(ObjectReference)
+    if (args.includes('updatable')) this.data.updatableReferences.push(ObjectReference)
+    if (args.includes('renderable')) this.data.renderableReferences.push(ObjectReference)
+    if (args.includes('player')) this.data.playerReference.push(ObjectReference)
   }
   update() {
-    
-    this.data.objectsReferences.map(obj => {
+    this.data.updatableReferences.map(obj => {
       obj.update()
     })
   }
-  run(ctx) {
+  collisions() {
+    const CR = this.data.collisionableReferences
+
+    for(let i = 0; i < this.data.collisionableReferences.length; i++) {
+      if (CR[i].collidingData(this.data.playerReference[0].data.hitbox)) {
+        console.log('colliding')
+      }
+    }
+  }
+  render(ctx) {
     // cleaning up
     ctx.fillRect(0, 0, 1000, 400)
 
     // rendering every object's sprite
-    this.data.objectsReferences.map(obj => {
+    this.data.renderableReferences.map(obj => {
       const {ImageReference, width, height, x, y} = obj.run(ctx)
       ctx.drawImage(ImageReference, x, y, width, height)
     })

@@ -6,7 +6,7 @@ export class ObjPlayer extends _Object {
   constructor(SpriteReference = null, args) {
     super(SpriteReference, args)
 
-    const [width, height, x, y] = [this.data]
+    const {width, height, x, y} = this.data
 
     this.data = {
       ...this.data,
@@ -42,7 +42,7 @@ export class ObjPlayer extends _Object {
 
   // inifinite loop checking if key is pressed for every 100ms
   listeners() {
-    const moving = this.data.moving
+    const {moving, x, y, width, height} = this.data
 
     if (this.data.keyState['KeyA'] || this.data.keyState['ArrowLeft']){
       this.data.speedX = -3
@@ -78,6 +78,12 @@ export class ObjPlayer extends _Object {
         this.data.speedY = 0
     }
 
+    this.data.hitbox = {
+      left: x - width/2,
+      right: x + width/2,
+      up: y - height/2,
+      down: y + height/2
+    }
     setTimeout(this.listeners.bind(this), 100);
   }
 }

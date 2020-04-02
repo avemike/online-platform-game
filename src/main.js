@@ -10,7 +10,7 @@ const MainRoom = new _Room()
 
 MainWindow.selectRoom(MainRoom)
 
-MainRoom.addObjectReference(Player)
-MainRoom.addObjectReference(Block)
+MainRoom.addObjectReference(Player, ['updatable', 'player', 'renderable'])
+MainRoom.addObjectReference(Block, ['collisionable', 'renderable'])
 
 MainWindow.start()
