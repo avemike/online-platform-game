@@ -4,18 +4,16 @@ export class _Window {
       elementReference,
       ctx: canvas.getContext('2d', {alpha: false}), // set alpha channel on false
       RoomReference: null,
-      render: true  // reducing fps by 2 i guess
+      
     }
   }
   selectRoom(RoomReference) {
     this.data.RoomReference = RoomReference
   }
   start() {
-    this.data.RoomReference.collisions()
     this.data.RoomReference.update()
-    if(this.data.render)
-      this.data.RoomReference.render(this.data.ctx)
-    this.data.render = !this.data.render
+    this.data.RoomReference.collisions()
+    this.data.RoomReference.render(this.data.ctx)
 
     window.requestAnimationFrame(this.start.bind(this))
   }

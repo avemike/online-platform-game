@@ -26,11 +26,9 @@ export class _Room {
   }
   collisions() {
     const CR = this.data.collisionableReferences
-
-    for(let i = 0; i < this.data.collisionableReferences.length; i++) {
-      if (CR[i].collidingData(this.data.playerReference[0].data.hitbox)) {
-        console.log('colliding')
-      }
+    
+    for(let i = 0; i < CR.length; i++) {
+      this.data.playerReference[0].collide(CR[i].data.hitbox)
     }
   }
   render(ctx) {
