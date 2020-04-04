@@ -96,10 +96,10 @@ export class ObjPlayer extends _Object {
   collide(objHitbox) {
     let {left,right,up,down} = this.data.hitbox
   
-    // left -= this.data.speedX
-    // right += this.data.speedX
-    // up -= this.data.speedY
-    // down += this.data.speedY
+    left += this.data.speedX
+    right += this.data.speedX
+    up += this.data.speedY
+    down += this.data.speedY
 
     // check if object is too far away to even think of colliding
     if(
@@ -121,18 +121,25 @@ export class ObjPlayer extends _Object {
       return p
     })
 
+    const {width, height} = this.data
+    console.log(shift[0])
+    
     switch (shift[0]) {
-      case 'left':
-        this.data.x -= shift[1]
-        break;
       case 'right':
-        this.data.x += shift[1]
+        this.data.x = objHitbox.right + width/2 
+        // this.data.x -= shift[1]
+        break;
+      case 'left':
+        this.data.x = objHitbox.left - width/2 
+        // this.data.x += shift[1]
         break;
       case 'up':
-        this.data.y -= shift[1]
+        this.data.y = objHitbox.up - height/2 
+        // this.data.y -= shift[1]
         break;
       case 'down':
-        this.data.y += shift[1]
+        this.data.y = objHitbox.down + height/2 
+        // this.data.y += shift[1]
         break;
       default:
         throw new Error("Unknown collision's direction")
