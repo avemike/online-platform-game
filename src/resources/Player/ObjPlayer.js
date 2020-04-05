@@ -1,9 +1,6 @@
-import {
-  _Object
-} from '../../classes/_Object';
-import { obj } from 'from2';
+import { _Collisionable } from '../../classes/_Collisionable';
 
-export class ObjPlayer extends _Object {
+export class ObjPlayer extends _Collisionable {
   constructor(SpriteReference = null, args) {
     super(SpriteReference, args)
 
@@ -15,9 +12,7 @@ export class ObjPlayer extends _Object {
       moving: 
       {
         left: false,
-        up: false,
-        right: false,
-        down: false
+        right: false
       },
       hitbox:
       {
@@ -30,7 +25,15 @@ export class ObjPlayer extends _Object {
 
     // setting up listeners
     window.addEventListener('keydown', (e) => {
-      this.data.keyState[e.code] = true;
+      if(e.code === 'KeyW' || e.code === 'Space') {
+        if(this.data.standing) {
+          this.data.speedY = 0;
+          this.data.accY = -3.5;
+        }
+      }
+      else {
+        this.data.keyState[e.code] = true;
+      }
     }, true);
 
     window.addEventListener('keyup', (e) => {
@@ -38,14 +41,13 @@ export class ObjPlayer extends _Object {
     }, true);
 
     this.listeners()
-    // 
   }
 
   // inifinite loop checking if key is pressed for every 80ms
   listeners() {
     const {moving, x, y, width, height} = this.data
 
-    if (this.data.keyState['KeyA'] || this.data.keyState['ArrowLeft']){
+    if (this.data.keyState['KeyA']){
       this.data.speedX = -3
       moving.left = true
     } else if (moving.left) {
@@ -53,30 +55,13 @@ export class ObjPlayer extends _Object {
       moving.left = false
     }
 
-    if (this.data.keyState['KeyD'] || this.data.keyState['ArrowRight']){
+    if (this.data.keyState['KeyD']){
       this.data.speedX = 3
       moving.right = true
     } else if (moving.right) {
       moving.right = false
       if (!moving.left)
         this.data.speedX = 0
-    }
-
-    if (this.data.keyState['KeyW'] || this.data.keyState['ArrowUp']){
-      this.data.speedY = -3
-      moving.up = true
-    } else if (moving.up) {
-      this.data.speedY = 0
-      moving.up = false
-    }
-
-    if (this.data.keyState['KeyS'] || this.data.keyState['ArrowDown']){
-      this.data.speedY = +3
-      moving.down = true
-    } else if (moving.down) {
-      moving.down = false
-      if (!moving.up)
-        this.data.speedY = 0
     }
 
     this.data.hitbox = {
@@ -88,57 +73,8 @@ export class ObjPlayer extends _Object {
     setTimeout(this.listeners.bind(this), 80);
   }
 
-  // RETURNS info about collision:
-  // - false if not
-  // - object with data {x, y} if true
-  // x and y represents how deep object is colliding
-  // ARGUMENT {left, right, up, down} hitbox of possible colliding element
-  collide(objHitbox) {
-    let {left,right,up,down} = this.data.hitbox
-  
-    left += this.data.speedX
-    right += this.data.speedX
-    up += this.data.speedY
-    down += this.data.speedY
-
-    // check if object is too far away to even think of colliding
-    if(
-      objHitbox.right < left ||
-      objHitbox.left > right ||
-      objHitbox.down < up ||
-      objHitbox.up > down
-    ) return false
-
-    const howManyPxToBorders = Object.entries({
-      down: objHitbox.down - up,
-      up: down - objHitbox.up,
-      left: right - objHitbox.left,
-      right: objHitbox.right - left
-    })
-
-    const shift = howManyPxToBorders.reduce((p, c) => {
-      if(c[1] < p[1]) return c
-      return p
-    })
-
-    const {width, height} = this.data
-    
-    switch (shift[0]) {
-      case 'right':
-        this.data.x = objHitbox.right + width/2 
-        break;
-      case 'left':
-        this.data.x = objHitbox.left - width/2 
-        break;
-      case 'up':
-        this.data.y = objHitbox.up - height/2 
-        break;
-      case 'down':
-        this.data.y = objHitbox.down + height/2 
-        break;
-      default:
-        throw new Error("Unknown collision's direction")
-        break;
-    }
+  update() {
+    this.gravity()
+    super.update()
   }
 }

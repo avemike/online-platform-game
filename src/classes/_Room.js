@@ -26,9 +26,14 @@ export class _Room {
   }
   collisions() {
     const CR = this.data.collisionableReferences
+    let standing = false
     for(let i = 0; i < CR.length; i++) {
-      this.data.playerReference[0].collide(CR[i].data.hitbox)
+      if(this.data.playerReference[0].collide(CR[i].data.hitbox) === 'up') {
+        standing = true
+      }
     }
+    if(standing) this.data.playerReference[0].turnOnStanding()
+    else this.data.playerReference[0].turnOffStanding()
   }
   render(ctx) {
     // cleaning up

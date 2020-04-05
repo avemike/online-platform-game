@@ -12,7 +12,10 @@ export class _Object {
 
       speedX: args.speedX || 0,
       speedY: args.speedY || 0,
-      
+
+      accX: 0,
+      accY: 0,
+
       speedXMax: args.speedXmax || 10,
       speedYMax: args.speedYmax || 10,
       
@@ -22,8 +25,17 @@ export class _Object {
       listeners: []
     }
   }
+
+  // every fps adds vertical acceleration 
+  gravity() {
+    if (this.data.accY < 5) this.data.accY += 0.4
+  }
+
   update() {
+    if(this.data.speedY > 4) this.data.speedY = 4
     this.data.x += this.data.speedX
+
+    this.data.speedY += this.data.accY
     this.data.y += this.data.speedY
   }
   run() {
