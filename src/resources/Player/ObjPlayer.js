@@ -122,24 +122,19 @@ export class ObjPlayer extends _Object {
     })
 
     const {width, height} = this.data
-    console.log(shift[0])
     
     switch (shift[0]) {
       case 'right':
         this.data.x = objHitbox.right + width/2 
-        // this.data.x -= shift[1]
         break;
       case 'left':
         this.data.x = objHitbox.left - width/2 
-        // this.data.x += shift[1]
         break;
       case 'up':
         this.data.y = objHitbox.up - height/2 
-        // this.data.y -= shift[1]
         break;
       case 'down':
         this.data.y = objHitbox.down + height/2 
-        // this.data.y += shift[1]
         break;
       default:
         throw new Error("Unknown collision's direction")
