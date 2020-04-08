@@ -4,16 +4,19 @@ export class _Window {
       elementReference,
       ctx: canvas.getContext('2d', {alpha: false}), // set alpha channel on false
       RoomReference: null,
-      
+      work: true,
     }
   }
   selectRoom(RoomReference) {
     this.data.RoomReference = RoomReference
   }
   start() {
-    this.data.RoomReference.update()
-    this.data.RoomReference.collisions()
-    this.data.RoomReference.render(this.data.ctx)
+    if(this.data.work) {
+      this.data.RoomReference.update()
+      this.data.RoomReference.collisions()
+      this.data.RoomReference.render(this.data.ctx)
+      this.data.work = false
+    } else this.data.work = true
 
     window.requestAnimationFrame(this.start.bind(this))
   }

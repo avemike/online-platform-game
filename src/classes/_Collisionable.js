@@ -60,9 +60,11 @@ export class _Collisionable extends _Object {
     
     switch (shift[0]) {
       case 'right':
+        console.log(howManyPxToBorders)
         this.data.x = objHitbox.right + width/2 
         break;
       case 'left':
+        console.log(howManyPxToBorders)
         this.data.x = objHitbox.left - width/2 
         break;
       case 'up':

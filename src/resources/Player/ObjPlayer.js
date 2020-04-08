@@ -14,6 +14,7 @@ export class ObjPlayer extends _Collisionable {
         left: false,
         right: false
       },
+      baseSpeed: 10,
       hitbox:
       {
         left: x - width/2,
@@ -28,7 +29,7 @@ export class ObjPlayer extends _Collisionable {
       if(e.code === 'KeyW' || e.code === 'Space') {
         if(this.data.standing) {
           this.data.speedY = 0;
-          this.data.accY = -3.5;
+          this.data.accY = -6.4;
         }
       }
       else {
@@ -48,7 +49,7 @@ export class ObjPlayer extends _Collisionable {
     const {moving, x, y, width, height} = this.data
 
     if (this.data.keyState['KeyA']){
-      this.data.speedX = -3
+      this.data.speedX = -this.data.baseSpeed
       moving.left = true
     } else if (moving.left) {
       this.data.speedX = 0
@@ -56,7 +57,7 @@ export class ObjPlayer extends _Collisionable {
     }
 
     if (this.data.keyState['KeyD']){
-      this.data.speedX = 3
+      this.data.speedX = this.data.baseSpeed
       moving.right = true
     } else if (moving.right) {
       moving.right = false

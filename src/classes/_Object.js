@@ -28,7 +28,7 @@ export class _Object {
 
   // every fps adds vertical acceleration 
   gravity() {
-    if (this.data.accY < 5) this.data.accY += 0.4
+    if (this.data.accY < 12) this.data.accY += 1.1
   }
 
   update() {
