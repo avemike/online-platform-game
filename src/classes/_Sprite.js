@@ -1,14 +1,26 @@
 export class _Sprite {
-  constructor(imagesReference, args) {
+  constructor(imageReferences, args) {
     this.data = {
-      imagesReference: imagesReference,
+      imagesReferences: imageReferences,
       properties: {
         width: args.width || 40,
         height: args.height || 40
       },
+      animStage: args.animStage || 0,
+      lastAnimStage: args.lastAnimStage || imageReferences.length - 1
 
     }
   }
-  getProperties() { return this.data.properties }
-  getImageReference() { return this.data.imagesReference }
+  getProperties() {
+    return this.data.properties
+  }
+
+  getImageReference() {
+    const currentAnimStage = this.data.animStage
+    
+    if(this.data.animStage === this.data.lastAnimStage)  this.data.animStage = 0
+    else this.data.animStage += 1
+
+    return this.data.imagesReferences[currentAnimStage]
+  }
 }

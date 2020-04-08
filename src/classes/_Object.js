@@ -35,6 +35,7 @@ export class _Object {
     if(this.data.speedY > 4) this.data.speedY = 4
     this.data.x += this.data.speedX
 
+
     this.data.speedY += this.data.accY
     this.data.y += this.data.speedY
   }

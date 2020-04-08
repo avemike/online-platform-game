@@ -6,6 +6,7 @@ export class _Window {
       RoomReference: null,
       work: true,
     }
+    this.data.ctx.imageSmoothingEnabled = false
   }
   selectRoom(RoomReference) {
     this.data.RoomReference = RoomReference
