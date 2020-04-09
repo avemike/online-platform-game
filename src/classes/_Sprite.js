@@ -7,12 +7,17 @@ export class _Sprite {
         height: args.height || 40
       },
       animStage: args.animStage || 0,
-      lastAnimStage: args.lastAnimStage || imageObjects.default.length - 1
-
+      lastAnimStage: args.lastAnimStage || imageObjects.default.length - 1,
     }
   }
   getProperties() {
     return this.data.properties
+  }
+
+  changeSprite(name) {
+    if(this.data.imageObjects[name]) {
+      this.data.imageObjects.default = this.data.imageObjects[name]
+    }
   }
 
   getImageReference() {

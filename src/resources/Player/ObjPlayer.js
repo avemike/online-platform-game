@@ -49,6 +49,7 @@ export class ObjPlayer extends _Collisionable {
     const {moving, x, y, width, height} = this.data
 
     if (this.data.keyState['KeyA']){
+      this.data.SpriteReference.changeSprite('run_left')
       this.data.speedX = -this.data.baseSpeed
       moving.left = true
     } else if (moving.left) {
@@ -57,6 +58,7 @@ export class ObjPlayer extends _Collisionable {
     }
 
     if (this.data.keyState['KeyD']){
+      this.data.SpriteReference.changeSprite('run_right')
       this.data.speedX = this.data.baseSpeed
       moving.right = true
     } else if (moving.right) {
