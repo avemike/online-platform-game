@@ -1,13 +1,13 @@
 export class _Sprite {
-  constructor(imageReferences, args) {
+  constructor(imageObjects, args) {
     this.data = {
-      imagesReferences: imageReferences,
+      imageObjects,
       properties: {
         width: args.width || 40,
         height: args.height || 40
       },
       animStage: args.animStage || 0,
-      lastAnimStage: args.lastAnimStage || imageReferences.length - 1
+      lastAnimStage: args.lastAnimStage || imageObjects.default.length - 1
 
     }
   }
@@ -21,6 +21,6 @@ export class _Sprite {
     if(this.data.animStage === this.data.lastAnimStage)  this.data.animStage = 0
     else this.data.animStage += 1
 
-    return this.data.imagesReferences[currentAnimStage]
+    return this.data.imageObjects.default[currentAnimStage]
   }
 }
