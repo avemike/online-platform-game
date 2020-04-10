@@ -12,7 +12,10 @@ export class _Room {
   // ['collisionable', 'renderable', 'player', 'grounded']
   addObjectReference(ObjectReference, args) {
     // error handling
-    if (!ObjectReference) throw new Error('ObjectReference does not exist')
+    if (!ObjectReference) {
+      throw ('ObjectReference does not exist')
+      return ;
+    }
     
     if (args.includes('collisionable')) this.data.collisionableReferences.push(ObjectReference)
     if (args.includes('updatable')) this.data.updatableReferences.push(ObjectReference)

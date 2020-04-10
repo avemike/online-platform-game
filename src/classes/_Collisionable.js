@@ -74,7 +74,7 @@ export class _Collisionable extends _Object {
         this.data.speedY = -this.data.speedY/2 
         break;
       default:
-        throw new Error("Unknown collision's direction")
+        throw ("Unknown collision's direction")
     }
 
     return shift[0]
