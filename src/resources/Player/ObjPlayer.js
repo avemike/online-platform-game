@@ -53,6 +53,7 @@ export class ObjPlayer extends _Collisionable {
       this.data.speedX = -this.data.baseSpeed
       moving.left = true
     } else if (moving.left) {
+      this.data.SpriteReference.changeSprite('idle_left')
       this.data.speedX = 0
       moving.left = false
     }
@@ -63,6 +64,7 @@ export class ObjPlayer extends _Collisionable {
       moving.right = true
     } else if (moving.right) {
       moving.right = false
+      this.data.SpriteReference.changeSprite('idle_right')
       if (!moving.left)
         this.data.speedX = 0
     }
