@@ -14,6 +14,7 @@ export class ObjPlayer extends _Collisionable {
         left: false,
         right: false
       },
+      recentDirection: 'right',
       baseSpeed: 10,
       hitbox:
       {
@@ -49,7 +50,11 @@ export class ObjPlayer extends _Collisionable {
     const {moving, x, y, width, height} = this.data
 
     if (this.data.keyState['KeyA']){
+      this.data.recentDirection = 'left'
+
       if(this.data.standing) this.data.SpriteReference.changeSprite('run_left')
+      else this.data.SpriteReference.changeSprite('jump_left')
+
       this.data.speedX = -this.data.baseSpeed
       moving.left = true
     } else if (moving.left) {
@@ -59,7 +64,11 @@ export class ObjPlayer extends _Collisionable {
     }
 
     if (this.data.keyState['KeyD']){
+      this.data.recentDirection = 'right'
+
       if(this.data.standing) this.data.SpriteReference.changeSprite('run_right')
+      else this.data.SpriteReference.changeSprite('jump_right')
+
       this.data.speedX = this.data.baseSpeed
       moving.right = true
     } else if (moving.right) {
@@ -87,13 +96,13 @@ export class ObjPlayer extends _Collisionable {
 
   // super.turnOnStanding returns false when already are standing
   turnOnStanding() {
-    if( super.turnOnStanding() ) this.data.SpriteReference.changeSprite('fall_right')
+    if( super.turnOnStanding() ) this.data.SpriteReference.changeSprite(`fall_${this.data.recentDirection}`)
   }
 
   // super.turnOffStanding returns false when already are not standing
   turnOffStanding() {
     if( super.turnOffStanding() ) {
-      this.data.SpriteReference.changeSprite('jump_right')
+      this.data.SpriteReference.changeSprite(`jump_${this.data.recentDirection}`)
     } 
   }
 }

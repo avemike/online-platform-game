@@ -23,7 +23,7 @@ export class _Object {
       
       updateAnimStageMeter: {
         stage: 0,
-        max: 1
+        max: 2
       },
 
       listeners: []
