@@ -25,11 +25,11 @@ export class ObjPlayer extends _Collisionable {
     }
 
     // setting up listeners
-    window.addEventListener('keydown', (e) => {
+    window.addEventListener('keydown', e => {
       if(e.code === 'KeyW' || e.code === 'Space') {
         if(this.data.standing) {
-          this.data.speedY = 0;
-          this.data.accY = -6.4;
+          this.data.speedY = 0
+          this.data.accY = -6.4
         }
       }
       else {
@@ -38,8 +38,8 @@ export class ObjPlayer extends _Collisionable {
     }, true);
 
     window.addEventListener('keyup', (e) => {
-      this.data.keyState[e.code] = false;
-    }, true);
+      this.data.keyState[e.code] = false
+    }, true)
 
     this.listeners()
   }
@@ -49,22 +49,22 @@ export class ObjPlayer extends _Collisionable {
     const {moving, x, y, width, height} = this.data
 
     if (this.data.keyState['KeyA']){
-      this.data.SpriteReference.changeSprite('run_left')
+      if(this.data.standing) this.data.SpriteReference.changeSprite('run_left')
       this.data.speedX = -this.data.baseSpeed
       moving.left = true
     } else if (moving.left) {
-      this.data.SpriteReference.changeSprite('idle_left')
+      if(this.data.standing) this.data.SpriteReference.changeSprite('idle_left')
       this.data.speedX = 0
       moving.left = false
     }
 
     if (this.data.keyState['KeyD']){
-      this.data.SpriteReference.changeSprite('run_right')
+      if(this.data.standing) this.data.SpriteReference.changeSprite('run_right')
       this.data.speedX = this.data.baseSpeed
       moving.right = true
     } else if (moving.right) {
       moving.right = false
-      this.data.SpriteReference.changeSprite('idle_right')
+      if(this.data.standing) this.data.SpriteReference.changeSprite('idle_right')
       if (!moving.left)
         this.data.speedX = 0
     }
@@ -77,9 +77,23 @@ export class ObjPlayer extends _Collisionable {
     }
     setTimeout(this.listeners.bind(this), 80);
   }
-
+  gravity() {
+    super.gravity()
+  }
   update() {
     this.gravity()
     super.update()
+  }
+
+  // super.turnOnStanding returns false when already are standing
+  turnOnStanding() {
+    if( super.turnOnStanding() ) this.data.SpriteReference.changeSprite('fall_right')
+  }
+
+  // super.turnOffStanding returns false when already are not standing
+  turnOffStanding() {
+    if( super.turnOffStanding() ) {
+      this.data.SpriteReference.changeSprite('jump_right')
+    } 
   }
 }

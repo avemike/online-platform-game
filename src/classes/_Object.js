@@ -21,6 +21,10 @@ export class _Object {
       
       spriteProperties : sprProperties,
       
+      updateAnimStageMeter: {
+        stage: 0,
+        max: 1
+      },
 
       listeners: []
     }
@@ -39,7 +43,16 @@ export class _Object {
     this.data.speedY += this.data.accY
     this.data.y += this.data.speedY
   }
+  updateAnimStage() {
+    if(this.data.updateAnimStageMeter.stage === this.data.updateAnimStageMeter.max) {
+      this.data.updateAnimStageMeter.stage = 0
+      this.data.SpriteReference.updateAnimStages()
+    } else {
+      this.data.updateAnimStageMeter.stage += 1
+    }
+  }
   run() {
+    this.updateAnimStage()
     return {
       ImageReference: this.data.SpriteReference.getImageReference(),
       width: this.data.spriteProperties.width,

@@ -18,10 +18,16 @@ export class _Collisionable extends _Object {
   }
 
   turnOnStanding() {
+    if (this.data.standing) return false 
+    
     this.data.standing = true
+    return true
   }
   turnOffStanding() {
+    if (!this.data.standing) return false
+    
     this.data.standing = false
+    return true
   }
   // RETURNS info about collision:
   // - false if not

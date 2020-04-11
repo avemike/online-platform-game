@@ -7,7 +7,7 @@ export class _Sprite {
         height: args.height || 40
       },
       animStage: args.animStage || 0,
-      lastAnimStage: imageObjects.default.length - 1,
+      lastAnimStage: imageObjects.default.animation.length - 1,
     }
   }
   getProperties() {
@@ -21,17 +21,25 @@ export class _Sprite {
       return ; 
     }
     this.data.imageObjects.default = this.data.imageObjects[name]
-    this.updateAnimStages()
+    this.updateLastAnimeStage()
   }
-  updateAnimStages() {
-    this.data.lastAnimStage = this.data.imageObjects.default.length - 1
+  updateLastAnimeStage() {
+    this.data.lastAnimStage = this.data.imageObjects.default.animation.length - 1
     this.data.animStage = 0
   }
-  getImageReference() {
+  updateAnimStages() {
     const currentAnimStage = this.data.animStage
-    if(this.data.animStage === this.data.lastAnimStage)  this.data.animStage = 0
+    if(currentAnimStage === this.data.lastAnimStage) {
+      if (this.data.imageObjects.default.once ) {
+        if(this.data.imageObjects.default.next) {
+          this.changeSprite(this.data.imageObjects.default.next)
+        }
+      }
+      else this.data.animStage = 0
+    }
     else this.data.animStage += 1
-    
-    return this.data.imageObjects.default[currentAnimStage]
+  }
+  getImageReference() {
+    return this.data.imageObjects.default.animation[this.data.animStage]
   }
 }
