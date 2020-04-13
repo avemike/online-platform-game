@@ -4,9 +4,25 @@ export class _Room {
       renderableReferences: [],
       collisionableReferences: [],
       playerReference: [],
-      updatableReferences: []
+      updatableReferences: [],
+
+      camera: {
+        x: 0,
+        y: 0,
+        width: 1000,
+        height: 400
+      }
     }
   }
+  
+  pushWindowProperties(width, height) {
+    this.data.camera = {
+      ...this.data.camera,
+      width,
+      height
+    } 
+  }
+  
   // adding objects to room
   // args is array of possible object options
   // ['collisionable', 'renderable', 'player', 'grounded']
@@ -27,6 +43,7 @@ export class _Room {
       obj.update()
     })
   }
+
   collisions() {
     const CR = this.data.collisionableReferences
     let standing = false
@@ -41,11 +58,14 @@ export class _Room {
   render(ctx) {
     // cleaning up
     ctx.fillRect(0, 0, 1000, 400)
+    this.data.camera.x = this.data.playerReference[0].data.x + this.data.playerReference[0].data.width/2 - this.data.camera.width /2
+    this.data.camera.y = this.data.playerReference[0].data.y + this.data.playerReference[0].data.height/2 - this.data.camera.height /2
 
     // rendering every object's sprite
     this.data.renderableReferences.map(obj => {
       const {ImageReference, width, height, x, y} = obj.run(ctx)
-      ctx.drawImage(ImageReference, x, y, width, height)
+
+      ctx.drawImage(ImageReference, x - this.data.camera.x, y - this.data.camera.y, width, height)
     })
   }
 }
