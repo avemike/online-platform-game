@@ -1,4 +1,4 @@
-import DotSrc from './block_40x40.png'
+import DotSrc from './ground.png'
 import { _Sprite } from '../../classes/_Sprite'
 
 const DotImage = new Image(40, 40)
@@ -8,4 +8,4 @@ export const SprBlock = new _Sprite({
   default: {
     animation: [DotImage]
   }
-}, {width: 280, height: 40})
+}, {width: 400, height: 40})

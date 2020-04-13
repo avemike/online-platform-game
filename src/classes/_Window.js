@@ -1,12 +1,15 @@
 export class _Window {
   constructor(elementReference) {
+    const width = document.querySelector('#canvas').width
+    const height = document.querySelector('#canvas').height
+
     this.data = {
       elementReference,
       ctx: canvas.getContext('2d', {alpha: false}), // set alpha channel on false
       RoomReference: null,
       work: true,
-      width: 1000,  // unused
-      height: 400   // unused  has to do sth with this functionality later
+      width,
+      height
     }
     this.data.ctx.imageSmoothingEnabled = false
   }

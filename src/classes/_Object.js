@@ -18,9 +18,9 @@ export class _Object {
 
       speedXMax: args.speedXmax || 10,
       speedYMax: args.speedYmax || 10,
-      
+
       spriteProperties : sprProperties,
-      
+
       updateAnimStageMeter: {
         stage: 0,
         max: 2

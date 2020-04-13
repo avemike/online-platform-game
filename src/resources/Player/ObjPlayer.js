@@ -29,6 +29,7 @@ export class ObjPlayer extends _Collisionable {
     window.addEventListener('keydown', e => {
       if(e.code === 'KeyW' || e.code === 'Space') {
         if(this.data.standing) {
+          this.data.SpriteReference.changeSprite(`jump_${this.data.recentDirection}`)
           this.data.speedY = 0
           this.data.accY = -6.4
         }

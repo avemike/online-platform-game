@@ -8,9 +8,7 @@ export class _Room {
 
       camera: {
         x: 0,
-        y: 0,
-        width: 1000,
-        height: 400
+        y: 0
       }
     }
   }
@@ -57,7 +55,7 @@ export class _Room {
   }
   render(ctx) {
     // cleaning up
-    ctx.fillRect(0, 0, 1000, 400)
+    ctx.fillRect(0, 0, this.data.camera.width, this.data.camera.height)
     this.data.camera.x = this.data.playerReference[0].data.x + this.data.playerReference[0].data.width/2 - this.data.camera.width /2
     this.data.camera.y = this.data.playerReference[0].data.y + this.data.playerReference[0].data.height/2 - this.data.camera.height /2
 

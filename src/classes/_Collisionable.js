@@ -3,7 +3,7 @@ import { _Object } from './_Object'
 export class _Collisionable extends _Object {
   constructor(SpriteReference = null, args) {
     super(SpriteReference, args)
-      
+    
     const {width, height, x, y} = this.data
     this.data = {
       ...this.data,
