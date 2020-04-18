@@ -57,13 +57,13 @@ export class _Room {
     // cleaning up
     ctx.fillRect(0, 0, this.data.camera.width, this.data.camera.height)
     this.data.camera.x = this.data.playerReference[0].data.x + this.data.playerReference[0].data.width/2 - this.data.camera.width /2
-    this.data.camera.y = this.data.playerReference[0].data.y + this.data.playerReference[0].data.height/2 - this.data.camera.height /2
+    this.data.camera.y = this.data.playerReference[0].data.y + this.data.playerReference[0].data.height/2 - this.data.camera.height /2 - 40
 
     // rendering every object's sprite
     this.data.renderableReferences.map(obj => {
       const {ImageReference, width, height, x, y} = obj.run(ctx)
 
-      ctx.drawImage(ImageReference, x - this.data.camera.x, y - this.data.camera.y, width, height)
+      ctx.drawImage(ImageReference, x - (this.data.camera.x * obj.data.depth), y - (this.data.camera.y * obj.data.depth), width, height)
     })
   }
 }

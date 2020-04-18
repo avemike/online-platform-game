@@ -26,7 +26,8 @@ export class _Object {
         max: 2
       },
 
-      listeners: []
+      listeners: [],
+      depth: args.depth !== undefined ? args.depth : 1
     }
   }
 

@@ -1,11 +1,11 @@
 import DotSrc from './ground.png'
 import { _Sprite } from '../../classes/_Sprite'
 
-const DotImage = new Image(40, 40)
-DotImage.src = DotSrc
+const image = new Image(40, 40)
+image.src = DotSrc
 
-export const SprBlock = new _Sprite({
+export const SprGround = new _Sprite({
   default: {
-    animation: [DotImage]
+    animation: [image]
   }
 }, {width: 400, height: 40})
