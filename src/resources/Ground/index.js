@@ -5,7 +5,7 @@ import { SprGroundBg } from './SprGroundBg'
 
 const GroundForeground = []
 const GroundBackground = []
-const groundNumber = 15
+const groundNumber = 3
 
 const startingX = -300
 const startingY = 630
