@@ -4,8 +4,13 @@ import { _Sprite } from '../../classes/_Sprite'
 const image = new Image(40, 40)
 image.src = sprSrc
 
+const ratioWidthHeight = 928 / 793
+
+export const height = 570
+export const width = height * ratioWidthHeight
+
 export const SprLeaves = new _Sprite({
   default: {
     animation: [image]
   }
-}, {width: 928, height: 793})
+}, {width: height * ratioWidthHeight, height: height})

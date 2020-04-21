@@ -56,11 +56,19 @@ export class _Room {
     else this.data.playerReference[0].turnOffStanding()
   }
   render(ctx) {
+    const {playerReference, camera} = this.data
     // cleaning up
-    ctx.fillRect(0, 0, this.data.camera.width, this.data.camera.height)
-    this.data.camera.x = this.data.playerReference[0].data.x + this.data.playerReference[0].data.width/2 - this.data.camera.width /2
-    this.data.camera.y = this.data.playerReference[0].data.y + this.data.playerReference[0].data.height/2 - this.data.camera.height /2 - 40
+    ctx.fillRect(0, 0, camera.width, camera.height)
 
+    // calculating objects camera shift (suppose that centre is player)
+    const newCameraY = playerReference[0].data.y + playerReference[0].data.height/2 - camera.height /2 - 40
+    const newCameraX = playerReference[0].data.x + playerReference[0].data.width/2 - camera.width /2 
+    
+    // acceptable camera borders
+    camera.x = newCameraX
+    camera.y = newCameraY > 45 ?
+      45 : newCameraY
+    
     // rendering every object's sprite
     this.data.renderableReferences.map(obj => {
       const {ImageReference, width, height, x, y} = obj.run(ctx)

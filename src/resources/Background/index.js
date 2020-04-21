@@ -2,21 +2,24 @@ import { ObjBg } from './ObjBg'
 import { SprBg } from './SprBg';
 import { ObjTreesInBg } from './ObjTreesInBg';
 import { SprTreesInBg } from './SprTreesInBg';
-import { SprLeaves } from './SprLeaves';
+import { SprLeaves, width as leavesWidth } from './SprLeaves';
 import { ObjLeaves } from './ObjLeaves';
 
 const TreesInBg = []
+const treesInBgY = 315
+
 const Leaves = []
+const leavesY = 210
 
 const rowNumber = 5
 const gap = 880
 
 for (let i = 0; i < rowNumber; i++) {
   TreesInBg.push(
-    new ObjTreesInBg( SprTreesInBg, {x: -400 + gap * i, y: 250})
+    new ObjTreesInBg( SprTreesInBg, {x: -400 + gap * i, y: treesInBgY})
   )
   Leaves.push(
-    new ObjLeaves( SprLeaves, {x: -400 + gap * i, y: 160})
+    new ObjLeaves( SprLeaves, {x: -400 + leavesWidth * i, y: leavesY})
   )
 }
 
