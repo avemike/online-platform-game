@@ -24,18 +24,20 @@ export class _Room {
   // adding objects to room
   // args is array of possible object options
   // ['collisionable', 'renderable', 'player', 'grounded']
-  addObjectReference(ObjectReference, args) {
+  addObjectReference(ObjectReferences, args) {
     // error handling
-    if (!ObjectReference) {
-      throw ('ObjectReference does not exist')
+    if (!ObjectReferences) {
+      throw ('ObjectReferences does not exist')
       return ;
     }
-    
-    if (args.includes('collisionable')) this.data.collisionableReferences.push(ObjectReference)
-    if (args.includes('updatable')) this.data.updatableReferences.push(ObjectReference)
-    if (args.includes('renderable')) this.data.renderableReferences.push(ObjectReference)
-    if (args.includes('player')) this.data.playerReference.push(ObjectReference)
+    ObjectReferences.map(ObjectReference => {
+      if (args.includes('collisionable')) this.data.collisionableReferences.push(ObjectReference)
+      if (args.includes('updatable')) this.data.updatableReferences.push(ObjectReference)
+      if (args.includes('renderable')) this.data.renderableReferences.push(ObjectReference)
+      if (args.includes('player')) this.data.playerReference.push(ObjectReference)
+    })
   }
+
   update() {
     this.data.updatableReferences.map(obj => {
       obj.update()

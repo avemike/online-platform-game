@@ -1,11 +1,11 @@
-import sprSrc from './PNG/Layer_0009_2.png'
+import sprSrc from './PNG/Layer_0002_7.png'
 import { _Sprite } from '../../classes/_Sprite'
 
 const image = new Image(40, 40)
 image.src = sprSrc
 
-export const SprTreesInBg = new _Sprite({
+export const SprLeaves = new _Sprite({
   default: {
     animation: [image]
   }
-}, {width: 928, height: 1300})
+}, {width: 928, height: 793})
