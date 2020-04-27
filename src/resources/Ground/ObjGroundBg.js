@@ -1,5 +1,3 @@
-import { _Object } from '../../classes/_Object'
+import { _Object } from "../../classes/_Object";
 
-export class ObjGroundBg extends _Object {
-  
-}
+export class ObjGroundBg extends _Object {}
