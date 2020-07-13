@@ -6,9 +6,9 @@
   "main": "index.html",
   "license": "MIT",
   "scripts": {
-    "start": "webpack && http-server ./dist -c-1",
-    "start:dev": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development",
     "webpack": "webpack",
+    "lint": "eslint \"src/**/*.js\"  --quiet",
     "dev": "webpack --devServer"
   },
   "devDependencies": {
@@ -17,6 +17,7 @@
     "@babel/preset-env": "^7.9.0",
     "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
     "file-loader": "^6.0.0",
     "http-server": "^0.12.1",
     "path": "^0.12.7",
