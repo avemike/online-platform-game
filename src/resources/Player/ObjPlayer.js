@@ -25,6 +25,8 @@ export class ObjPlayer extends _Collisionable {
     };
 
     // setting up listeners
+
+    // jumping listener
     window.addEventListener(
       "keydown",
       (e) => {
@@ -33,7 +35,7 @@ export class ObjPlayer extends _Collisionable {
             this.data.SpriteReference.changeSprite(
               `jump_${this.data.recentDirection}`
             );
-            this.data.speedY = 0;
+            this.data.speedY = 0.1;
             this.data.accY = -this.data.jumpingForce;
           }
         } else {
@@ -43,6 +45,7 @@ export class ObjPlayer extends _Collisionable {
       true
     );
 
+    // adding listener to window
     window.addEventListener(
       "keyup",
       (e) => {
@@ -58,6 +61,7 @@ export class ObjPlayer extends _Collisionable {
   listeners() {
     const { moving, x, y, width, height } = this.data;
 
+    // moving left listener
     if (this.data.keyState["KeyA"]) {
       this.data.recentDirection = "left";
 
@@ -74,6 +78,7 @@ export class ObjPlayer extends _Collisionable {
       moving.left = false;
     }
 
+    // moving right listener
     if (this.data.keyState["KeyD"]) {
       this.data.recentDirection = "right";
 

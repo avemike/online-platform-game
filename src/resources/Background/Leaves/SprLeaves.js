@@ -7,7 +7,7 @@ image.src = sprSrc;
 const ratioWidthHeight = 928 / 793;
 
 export const height = 570;
-export const width = height * ratioWidthHeight;
+export const width = height * ratioWidthHeight - 1;
 
 export const SprLeaves = new _Sprite(
   {

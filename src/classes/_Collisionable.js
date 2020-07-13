@@ -42,7 +42,7 @@ export class _Collisionable extends _Object {
     up += this.data.speedY;
     down += this.data.speedY;
 
-    // check if object is too far away to even think of colliding
+    // check if object is too far away
     if (
       objHitbox.right < left ||
       objHitbox.left > right ||

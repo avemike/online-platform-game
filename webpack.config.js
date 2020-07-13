@@ -1,18 +1,17 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
 
 module.exports = {
-  mode: 'development',
+  mode: "development",
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, "dist"),
     compress: true,
-    port: 9000
+    port: 9000,
   },
-  entry: './src/main.js',
-  devtool: 'inline-source-map',
+  entry: "./src/main.js",
+  devtool: "inline-source-map",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.bundle.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.bundle.js",
   },
   module: {
     rules: [
@@ -20,19 +19,16 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-        
+            presets: ["@babel/preset-env"],
+          },
+        },
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader',
-        ],
-      }
-    ]
-  }
+        use: ["file-loader"],
+      },
+    ],
+  },
 };

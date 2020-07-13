@@ -50,6 +50,7 @@ export class _Room {
   collisions() {
     const CR = this.data.collisionableReferences;
     let standing = false;
+
     for (let i = 0; i < CR.length; i++) {
       if (this.data.playerReference[0].collide(CR[i].data.hitbox) === "up") {
         standing = true;
