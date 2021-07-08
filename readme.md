@@ -1,6 +1,6 @@
-# WIP - small game library written in js
+# WIP
 
-I wanted to build up a small 2D game library using vanilla JS
+I wanted to build up a small 2D game
 
 demo of work
 
